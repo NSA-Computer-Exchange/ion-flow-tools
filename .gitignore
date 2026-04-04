@@ -1,0 +1,27 @@
+# 🔐 Secrets
+.env
+*.env
+
+# 🧠 Workspace (VERY IMPORTANT)
+workspace/
+env/
+
+# 🐍 Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 📦 Builds / artifacts
+dist/
+build/
+*.egg-info/
+
+# 📝 Logs
+*.log
+
+# 💻 macOS
+.DS_Store
+
+# 🧪 Test output
+tests/output/

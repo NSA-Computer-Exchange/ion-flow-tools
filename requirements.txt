@@ -1,0 +1,6 @@
+requests
+questionary
+rich
+reportlab
+openai
+dotenv

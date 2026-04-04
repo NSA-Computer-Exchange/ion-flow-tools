@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ion-flow-tools"
+version = "0.1.0"
+description = "ION flow documentation, validation, and git sync tools"
+
+[project.scripts]
+ionflow = "ionflow_cli.cli:main"
+
+[tool.setuptools]
+packages = ["ionflow_cli", "security", "tools"]
