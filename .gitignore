@@ -2,6 +2,7 @@
 .env
 *.env
 .vscode
+.ion_token_cache.json
 
 # 🧠 Workspace (VERY IMPORTANT)
 workspace/
