@@ -42,11 +42,16 @@ def main():
         "ION_TENANT": data["ti"],
         "ION_TENANT_URL": tenant_url,
         "ION_USERNAME": data["saak"],
-        "ION_PASSWORD": data["sask"]
-    }
+        "ION_PASSWORD": data["sask"],
+        "OPENAI_API_KEY": "ENTER VALID OPENAI API KEY HERE",
+        "INFOR_GENAI_BASE_URL": tenant_url,
+        "INFOR_GENAI_LOGICAL_ID": "infor.genai.genai",
+        "INFOR_GENAI_MODEL": "CLAUDE",
+        "INFOR_GENAI_VERSION":"claude-sonnet-4-6",
+        "INFOR_GENAI_MAX_TOKENS": 1500
+    }    
 
     env_path = Path(".env")
-
     with open(env_path, "w", encoding="utf-8") as f:
         for k, v in env_values.items():
             f.write(f'{k}="{v}"\n')

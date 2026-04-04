@@ -1,9 +1,11 @@
 # 🔐 Secrets
 .env
 *.env
+.vscode
 
 # 🧠 Workspace (VERY IMPORTANT)
 workspace/
+zzWorkspace/
 env/
 
 # 🐍 Python
