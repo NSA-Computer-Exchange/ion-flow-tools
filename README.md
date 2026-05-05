@@ -1,4 +1,4 @@
-# 🚀 ION Flow Tools
+# ION Flow Tools
 
 **ION Flow Tools** is a Python-based toolkit for working with **Infor ION Dataflows** outside the ION UI.
 
@@ -6,7 +6,7 @@ It enables you to export, analyze, document, validate, reconstruct, secure, and 
 
 ---
 
-# ✨ Overview
+# Overview
 
 ION Flow Tools allows you to:
 
@@ -23,7 +23,7 @@ ION Flow Tools allows you to:
 
 ---
 
-# ⚙️ Installation
+# Installation
 
 ## 1. Clone the repository
 
@@ -58,7 +58,7 @@ pip install -e .
 
 ---
 
-# 🔐 Setup (IMPORTANT)
+# Setup (IMPORTANT)
 
 After installation, run:
 
@@ -68,7 +68,7 @@ ionflow menu
 
 ---
 
-## 🔑 Setup API Credentials (Required)
+## Setup API Credentials (Required)
 
 From the menu, select:
 
@@ -88,11 +88,11 @@ Setup API Credentials
 * Extracts credentials
 * Automatically creates `.env`
 
-✅ No manual editing required
+No manual editing required
 
 ---
 
-## 🤖 Setup AI Credentials (Optional)
+## Setup AI Credentials (Optional)
 
 AI features enhance documentation and analysis.
 
@@ -130,7 +130,7 @@ INFOR_GENAI_MAX_TOKENS=1500
 
 ---
 
-# 🚀 Usage
+# Usage
 
 ## Launch CLI
 
@@ -156,7 +156,7 @@ ionflow ai-doc
 
 ---
 
-# 🗂️ Workspace Model
+# Workspace Model
 
 Each flow is isolated into its own workspace:
 
@@ -198,7 +198,7 @@ artifacts/
 
 ---
 
-# 🏗️ Project Structure
+# Project Structure
 
 ```text
 ion_flow_tools/
@@ -214,7 +214,7 @@ ion_flow_tools/
 
 ---
 
-# 🧩 Core Modules
+# Core Modules
 
 ## CLI
 
@@ -287,7 +287,7 @@ Handles token caching and reuse.
 
 ---
 
-# 🔒 Security
+# Security
 
 * `.env` is required for credentials
 * Never commit `.env`
@@ -296,7 +296,7 @@ Handles token caching and reuse.
 
 ---
 
-# 🤖 AI Features
+# AI Features
 
 AI enhances:
 
@@ -312,7 +312,7 @@ Future enhancements:
 
 ---
 
-# 🔄 Git Strategy
+# Git Strategy
 
 ## Main Repo
 
@@ -350,7 +350,7 @@ dist/
 
 ---
 
-# 📘 Typical Workflow
+# Typical Workflow
 
 1. Run `ionflow menu`
 2. Setup API credentials
@@ -363,7 +363,7 @@ dist/
 
 ---
 
-# 🧪 Use Cases
+# Use Cases
 
 * Reverse engineer flows
 * Document integrations
@@ -373,7 +373,7 @@ dist/
 
 ---
 
-# 🚧 Limitations
+# Limitations
 
 * Some activity types may require additional support
 * PDF formatting may vary
@@ -381,7 +381,7 @@ dist/
 
 ---
 
-# 🛣️ Roadmap
+# Roadmap
 
 * Expand reconstruction support
 * Improve PDF rendering
@@ -391,8 +391,8 @@ dist/
 
 ---
 
-# 👤 Author
+# Author
 
 **Rob Thayer**
 Senior Technical Consultant
-Infor / Python / Integration Development
+NSA / Python / Integration Development
