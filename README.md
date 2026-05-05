@@ -1,4 +1,4 @@
-## Quick Start (TUG Attendees)
+# Quick Start (TUG Attendees)
 
 1. Click "Code"
 2. Download ZIP (no Git required)
