@@ -5,7 +5,7 @@
 
 OR
 
-git clone ttps://github.com/NSA-Computer-Exchange/ion-flow-tools
+git clone https://github.com/NSA-Computer-Exchange/ion-flow-tools
 
 ---
 
