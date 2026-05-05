@@ -1,3 +1,14 @@
+## Quick Start (TUG Attendees)
+
+1. Click "Code"
+2. Download ZIP (no Git required)
+
+OR
+
+git clone ttps://github.com/NSA-Computer-Exchange/ion-flow-tools
+
+---
+
 # ION Flow Tools
 
 **ION Flow Tools** is a Python-based toolkit for working with **Infor ION Dataflows** outside the ION UI.
