@@ -22,14 +22,14 @@ def get_token():
                 return cached["access_token"]
 
         except Exception:
-            # corrupted cache → ignore and fetch new token
+            # corrupted cache --> ignore and fetch new token
             pass
 
     # Get new token
     result = authenticate()
     token = result["access_token"]
 
-    # 2 hour token → store slightly less for safety
+    # 2 hour token → store slightly less to be safe
     expires_at = time.time() + 7100
 
     with open(TOKEN_CACHE_FILE, "w") as f:
