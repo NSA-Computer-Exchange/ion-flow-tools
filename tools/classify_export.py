@@ -88,8 +88,6 @@ def classify_export(xml_path: str | Path) -> Dict[str, Any]:
 
         return result
 
-    # Generic single-artifact guesses for later expansion
-    # These are placeholders until we inspect native exports for each type.
     if root_name in {"Workflow", "Workflows", "WorkflowDefinitions"}:
         result["artifact_type"] = "workflow"
 
