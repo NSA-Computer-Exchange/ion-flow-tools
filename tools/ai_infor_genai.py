@@ -79,7 +79,6 @@ def ask_infor_genai(prompt: str) -> str:
 
     data = response.json()
 
-    # 🔍 IMPORTANT: adjust this once you confirm response shape
     text = (
         data.get("content")
         or data.get("response")
