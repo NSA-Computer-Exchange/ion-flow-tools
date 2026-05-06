@@ -146,7 +146,6 @@ def _build_generic_activity(flow_part_elem, node):
         _build_scripting_output_parameters(sa, node.get("outputParameters", []))
 
     elif activity_type == "WORKFLOW":
-        # Generic fallback only; native workflow details are handled in specialized builder
         _add_text(activity, "WorkflowName", node.get("workflowName") or node.get("name", ""))
 
     _build_activity_documents(activity, node.get("activityDocuments", []))
@@ -174,7 +173,6 @@ def _build_workflow_activity(flow_part_elem, node):
         _add_text(attr_elem, "ParentPathForFiltering", attr.get("parentPathForFiltering", ""))
         _add_text(attr_elem, "DataType", _workflow_data_type_code(attr.get("dataType", "STRING")))
 
-        # Native export shows these reversed from the JSON names
         input_elem = ET.SubElement(attr_elem, "WorkflowAttributeInputMappings")
         for mapping in attr.get("workflowAttributeOutputMappings", []):
             m = ET.SubElement(input_elem, "WorkflowAttributeMapping")
@@ -365,10 +363,6 @@ def reconstruct_dataflow_xml(enriched):
 
     flow_part = ET.SubElement(docflow, "FlowPart")
     _build_flow_node(flow_part, flow_root)
-
-    # Enable as needed once artifact builders are finalized
-    # _build_connection_points(root, enriched)
-    # _build_scripts(root, enriched)
 
     if _UNKNOWN_ACTIVITY_TYPES:
         print("Unknown activity types handled generically:", sorted(_UNKNOWN_ACTIVITY_TYPES))
