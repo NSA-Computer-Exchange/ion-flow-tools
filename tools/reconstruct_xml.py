@@ -6,7 +6,6 @@ import xml.etree.ElementTree as ET
 _UNKNOWN_ACTIVITY_TYPES = set()
 _ACTIVITY_BUILDERS = {}
 
-
 def register_activity_builder(node_type):
     def decorator(func):
         _ACTIVITY_BUILDERS[node_type] = func
