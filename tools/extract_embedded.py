@@ -73,7 +73,7 @@ def extract_embedded_artifacts(xml_path: str | Path, exports_root: str | Path) -
             _safe_write_text(out_path, cp_xml)
             result["connection_points"].append(str(out_path))
 
-    # Mappings bundle exists, but extraction is deferred
+    # Mappings exists
     mappings_root = _child(root, "Mappings")
     if mappings_root is not None:
         result["mappings_bundle_found"] = True
