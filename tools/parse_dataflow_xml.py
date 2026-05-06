@@ -355,9 +355,6 @@ def _walk_flow_parts(flow_part_elem: ET.Element, results: List[Dict[str, Any]]) 
                 _walk_node(child)
             return
 
-        # [DEBUG] Generic recursive descent through any container/wrapper node.
-        # This is what allows us to survive RoutingContainer,
-        # FlowPartContainer, nested FlowParts, etc.
         for child in list(node):
             _walk_node(child)
 
