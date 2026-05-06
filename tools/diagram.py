@@ -101,9 +101,7 @@ def _edge_label(act: dict) -> str:
     if act.get("activity_type") != "CBR_FILTER":
         return ""
 
-    # If normalize.py later exposes something like:
-    # act["branches"] = [{"label": "matched"}, {"label": "default"}]
-    # you can expand this logic.
+    
     return "next"
 
 
