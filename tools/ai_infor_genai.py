@@ -4,8 +4,6 @@ import os
 import requests
 from security.iontoken import get_token
 
-
-
 def build_ai_prompt(data: dict) -> str:
     import json
 
