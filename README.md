@@ -1,3 +1,5 @@
+See Issues for known limitations and upcoming improvements.
+
 # Quick Start (TUG Attendees)
 
 1. Click "Code"
