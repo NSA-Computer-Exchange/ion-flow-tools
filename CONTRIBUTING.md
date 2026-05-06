@@ -59,9 +59,9 @@ Example:
 
 ```bash
 git checkout -b feature/my-improvement
-Pull Request Guidelines
 ```
 
+## Pull Request Guidelines
 ## Before submitting a pull request:
 
 - Keep the change focused
