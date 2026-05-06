@@ -14,7 +14,6 @@ CLASS_MAP = {
     "SCRIPTING": "script",
 }
 
-
 def _safe_mermaid_id(value: str) -> str:
     """
     Mermaid node IDs should be simple alphanumeric-ish tokens.
