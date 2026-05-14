@@ -124,7 +124,7 @@ This will add default values to your `.env`.
 ```env
 OPENAI_API_KEY=
 
-INFOR_GENAI_BASE_URL=https://mingle-ionapi.inforcloudsuite.com/NSACOM_DEM
+INFOR_GENAI_BASE_URL=https://mingle-ionapi.inforcloudsuite.com/[YOUR_TENANT]
 INFOR_GENAI_LOGICAL_ID=infor.genai.genai
 INFOR_GENAI_MODEL=CLAUDE
 INFOR_GENAI_VERSION=claude-sonnet-4-6
