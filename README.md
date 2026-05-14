@@ -43,6 +43,7 @@ ION Flow Tools allows you to:
 ```bash
 git clone https://github.com/NSA-Computer-Exchange/ion-flow-tools
 cd ion_flow_tools
+git remote remove origin
 ```
 
 ---
