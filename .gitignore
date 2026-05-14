@@ -28,3 +28,5 @@ build/
 
 # 🧪 Test output
 tests/output/
+
+.current_workspace.json
