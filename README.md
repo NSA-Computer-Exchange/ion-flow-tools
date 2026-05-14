@@ -41,7 +41,7 @@ ION Flow Tools allows you to:
 ## 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/NSA-Computer-Exchange/ion-flow-tools
 cd ion_flow_tools
 ```
 
