@@ -89,12 +89,11 @@ def resolve_document_target(arg_index=2):
                             "workspace_root": ws_root,
                         }
 
-        # fallback
-        return {
-            "xml_path": pick_dataflow_xml(),
-            "workspace_name": None,
-            "workspace_root": None,
-        }
+        print("Error: no workspace target provided and no current workspace is set.")
+        print("Use: ionflow workspace set <name>")
+        print("Or:  ionflow document <workspace-name>")
+        print("To stage a new flow: ionflow stage <DataflowXml> [workspace-name]")
+        sys.exit(1)
 
     raw = sys.argv[arg_index]
     candidate = Path(raw)
@@ -211,6 +210,11 @@ def main():
                 "--docs-dir", str(artifacts_root / "docs"),
                 "--diagrams-dir", str(artifacts_root / "diagrams"),
             ])
+        else:
+            print("Error: document must target a workspace to avoid writing docs/normalized/diagrams at project root.")
+            print("Use: ionflow stage <DataflowXml> [workspace-name]")
+            print("Then: ionflow document <workspace-name>")
+            sys.exit(1)
 
         if "--pdf" in sys.argv:
             args.append("--pdf")
@@ -235,7 +239,6 @@ def main():
 
             args.extend(["--ai-provider", ai_provider])
             
-
         subprocess.run(args)
 
     elif command == "validate":
@@ -254,15 +257,12 @@ def main():
 
         push = "--push" in sys.argv
 
-        try:
-            result = sync_workspace_to_git(
-                workspace_name=target["workspace_name"],
-                push=push,
-            )
-            print(result.get("message", "Git sync completed."))
-        except Exception as exc:
-            print(f"Git sync failed: {exc}")
-            sys.exit(1)
+        result = sync_workspace_to_git(
+            workspace_name=target["workspace_name"],
+            push=push,
+        )
+
+        print(result.get("message", "Git sync completed."))
 
 
     elif command == "add-remote":
