@@ -15,6 +15,9 @@ ION Flow Tools CLI
 Usage:
   ionflow menu
       Interactive menu for documentation, validation, and Git sync
+          
+  ionflow stage <DataflowXml> [workspace-name]
+      Stage a new dataflow workspace from an exported dataflow XML          
 
   ionflow workspace list
       List available workspaces
@@ -170,6 +173,30 @@ def main():
     if command == "menu":
         subprocess.run([sys.executable, "-m", "tools.menu"])
 
+
+    elif command == "stage":
+        if len(sys.argv) < 3 or sys.argv[2].startswith("--"):
+            print("Usage: ionflow stage <DataflowXml> [workspace-name]")
+            sys.exit(1)
+
+        from tools.workspace import stage_dataflow
+
+        xml_path = sys.argv[2]
+        workspace_name = sys.argv[3] if len(sys.argv) >= 4 and not sys.argv[3].startswith("--") else None
+
+        try:
+            result = stage_dataflow(xml_path, workspace_name)
+        except Exception as exc:
+            print(f"Stage failed: {exc}")
+            sys.exit(1)
+
+        print("Workspace staged")
+        print(f"Workspace: {result['workspace_name']}")
+        print(f"Flow: {result['flow_name']}")
+        print(f"XML: {result['staged_flow_path']}")
+        print(f"Manifest: {result['manifest_path']}")
+
+
     elif command == "document":
         target = resolve_document_target(2)
 
@@ -194,6 +221,7 @@ def main():
         if "--ai" in sys.argv:
             args.append("--ai")
 
+
         if "--ai-provider" in sys.argv:
             idx = sys.argv.index("--ai-provider")
             if idx + 1 >= len(sys.argv) or sys.argv[idx + 1].startswith("--"):
@@ -213,28 +241,59 @@ def main():
     elif command == "validate":
         target = resolve_document_target(2)
         subprocess.run([sys.executable, "-m", "tools.validate_bundle", target["xml_path"]])
+        
 
     elif command == "sync":
         target = resolve_document_target(2)
 
-        args = [sys.executable, "-m", "tools.git_sync", target["xml_path"]]
+        if not target["workspace_name"]:
+            print("Sync requires a workspace name or current workspace.")
+            sys.exit(1)
 
-        if target["workspace_root"]:
-            workspace_root = Path(target["workspace_root"])
-            args.extend([
-                "--workspace-dir", str(workspace_root),
-            ])
+        from tools.git_sync import sync_workspace_to_git
 
-        if "--push" in sys.argv:
-            args.append("--push")
+        push = "--push" in sys.argv
 
-        subprocess.run(args)
+        try:
+            result = sync_workspace_to_git(
+                workspace_name=target["workspace_name"],
+                push=push,
+            )
+            print(result.get("message", "Git sync completed."))
+        except Exception as exc:
+            print(f"Git sync failed: {exc}")
+            sys.exit(1)
+
 
     elif command == "add-remote":
-        subprocess.run([sys.executable, "-m", "ionflow_cli.add_remote"])
+        if len(sys.argv) < 3:
+            print("Usage: ionflow add-remote <git-url>")
+            sys.exit(1)
+
+        from tools.git_sync import add_or_update_git_remote
+
+        remote_url = sys.argv[2]
+
+        try:
+            add_or_update_git_remote(remote_url)
+            print(f"Git remote configured: {remote_url}")
+        except Exception as exc:
+            print(f"Failed to configure remote: {exc}")
+            sys.exit(1)
+
 
     elif command == "git-status":
-        subprocess.run([sys.executable, "-m", "ionflow_cli.git_status"])
+        from tools.git_sync import get_git_remotes
+
+        try:
+            subprocess.run(["git", "status"], check=False)
+            print()
+            print("Remotes:")
+            print(get_git_remotes() or "(none)")
+        except Exception as exc:
+            print(f"Failed to read Git status: {exc}")
+            sys.exit(1)
+
 
     elif command == "workspace":
         from tools.workspace_context import (

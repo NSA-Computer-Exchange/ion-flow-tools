@@ -1,0 +1,147 @@
+{
+  "file_path": "/Users/rthayer/TUG/ion-flow-tools/workspace/robDataFabric_Query/exports/dataflows/robDataFabric_Query.xml",
+  "name": "robDataFabric_Query",
+  "description": "",
+  "type": "DATA_FLOW",
+  "last_updated_by": "Rob Thayer",
+  "last_updated_on": "2026-04-17 14:25:13.293",
+  "protect_on_export": "false",
+  "activities": [
+    {
+      "sequence_number": "0",
+      "name": "Submit Data Fabric Query",
+      "description": "",
+      "activity_type": "ION_API",
+      "documents": [
+        {
+          "noun": "DL_QUERY_ID",
+          "verb": "",
+          "document_type": "JSON"
+        }
+      ],
+      "ion_api_connection_point": "robDataFabric_Query",
+      "procedure_name": "",
+      "intermediate": "false",
+      "connection_points": "robDataFabric_Query"
+    },
+    {
+      "sequence_number": "1",
+      "name": "Convert JSON to XML",
+      "description": "Converts Datafabric JSON response to XML Sync BOD",
+      "activity_type": "SCRIPTING",
+      "documents": [
+        {
+          "noun": "DataLakeQueryResponse",
+          "verb": "Sync",
+          "document_type": "BOD"
+        }
+      ],
+      "script_name": "JSON_XML"
+    },
+    {
+      "sequence_number": "2",
+      "name": "Check Data Fabric Status",
+      "description": "Workflow process loop to check the status of the Data Fabric Query",
+      "activity_type": "WORKFLOW",
+      "documents": [
+        {
+          "noun": "DataLakeQueryResponse",
+          "verb": "Sync",
+          "document_type": "BOD"
+        }
+      ],
+      "workflow_name": "DLWF",
+      "workflow_noun_attributes": [
+        {
+          "name": "queryId",
+          "xpath": "DataLakeQueryResponse/queryId",
+          "parent_path_for_filtering": "",
+          "data_type": "1",
+          "input_mappings": [
+            {
+              "parameter_name": "ID",
+              "workflow_parameter_type": "3",
+              "workflow_parameter_data_type": "1"
+            }
+          ],
+          "output_mappings": [
+            {
+              "parameter_name": "ID",
+              "workflow_parameter_type": "3",
+              "workflow_parameter_data_type": "1"
+            }
+          ]
+        },
+        {
+          "name": "status",
+          "xpath": "DataLakeQueryResponse/status",
+          "parent_path_for_filtering": "",
+          "data_type": "1",
+          "input_mappings": [],
+          "output_mappings": [
+            {
+              "parameter_name": "STATUS",
+              "workflow_parameter_type": "2",
+              "workflow_parameter_data_type": "1"
+            }
+          ]
+        },
+        {
+          "name": "location",
+          "xpath": "DataLakeQueryResponse/location",
+          "parent_path_for_filtering": "",
+          "data_type": "1",
+          "input_mappings": [],
+          "output_mappings": [
+            {
+              "parameter_name": "RESULT",
+              "workflow_parameter_type": "2",
+              "workflow_parameter_data_type": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sequence_number": "3",
+      "name": "Data Fabric Get Results",
+      "description": "Queries Data Fabric to get the results and deliver to an sFTP endpoint",
+      "activity_type": "ION_API",
+      "documents": [
+        {
+          "noun": "DL_QUERY_RESPONSE",
+          "verb": "",
+          "document_type": "AnyData"
+        }
+      ],
+      "ion_api_connection_point": "DL_QEURY_DELIVER",
+      "procedure_name": "DL_QUERY_DELIVER",
+      "intermediate": "true",
+      "connection_points": "DL_QEURY_DELIVER"
+    },
+    {
+      "sequence_number": "4",
+      "name": "Data Fabric sFTP endpoint",
+      "description": "sFTP endpoint where Data Fabric Query results are delivered in CSV format",
+      "activity_type": "FILE",
+      "documents": [],
+      "file_connection_point": "MCIGB_sFTP",
+      "file_name": "Data Fabric sFTP endpoint",
+      "connection_points": "MCIGB_sFTP"
+    }
+  ],
+  "dependencies": {
+    "workflows": [
+      "DLWF"
+    ],
+    "connection_points": [
+      "DL_QEURY_DELIVER",
+      "MCIGB_sFTP",
+      "robDataFabric_Query"
+    ],
+    "scripts": [
+      "JSON_XML"
+    ],
+    "mappings": []
+  }
+}

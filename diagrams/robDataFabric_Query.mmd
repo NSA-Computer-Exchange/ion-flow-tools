@@ -1,0 +1,26 @@
+flowchart LR
+    subgraph robDataFabric_Query["robDataFabric_Query"]
+        A0[("Submit Data Fabric Query<br/>API<br/>robDataFabric_Query")]
+        A1[/"Convert JSON to XML<br/>Script<br/>JSON_XML"/]
+        A2[["Check Data Fabric Status<br/>Workflow<br/>DLWF"]]
+        A3[("Data Fabric Get Results<br/>API<br/>DL_QEURY_DELIVER")]
+        A4["Data Fabric sFTP endpoint<br/>FILE"]
+
+        A0 --> A1
+        A1 --> A2
+        A2 --> A3
+        A3 --> A4
+    end
+
+    classDef app fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px;
+    classDef workflow fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px;
+    classDef filter fill:#FCE4EC,stroke:#AD1457,stroke-width:1.5px;
+    classDef api fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px;
+    classDef script fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1.5px;
+    classDef default fill:#F5F5F5,stroke:#616161,stroke-width:1px;
+
+    class A0 api;
+    class A1 script;
+    class A2 workflow;
+    class A3 api;
+    class A4 default;
