@@ -30,3 +30,7 @@ build/
 tests/output/
 
 .current_workspace.json
+
+/docs/
+/normalized/
+/diagrams/
