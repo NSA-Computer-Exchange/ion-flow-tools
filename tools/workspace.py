@@ -10,7 +10,10 @@ import re
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 WORKSPACE_ROOT = PROJECT_ROOT / "workspace"
-SESSION_FILE = WORKSPACE_ROOT / ".current_workspace.json"
+STATE_DIR = Path.home() / ".ionflow"
+STATE_DIR.mkdir(parents=True, exist_ok=True)
+
+SESSION_FILE = STATE_DIR / "current_workspace.json"
 
 
 def _slugify(value: str) -> str:

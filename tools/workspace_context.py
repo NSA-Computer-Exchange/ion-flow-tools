@@ -1,8 +1,13 @@
 from pathlib import Path
 from typing import Optional
 
+
 WORKSPACE_ROOT = Path("workspace")
-CURRENT_FILE = WORKSPACE_ROOT / ".current_workspace"
+
+STATE_DIR = Path.home() / ".ionflow"
+STATE_DIR.mkdir(exist_ok=True)
+
+CURRENT_FILE = STATE_DIR / "current_workspace.json"
 
 
 def list_workspaces():

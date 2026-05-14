@@ -49,7 +49,8 @@ def ensure_repo_files(root: Path) -> None:
         ".env\n"
         ".ion_token_cache.json\n"
         "ion_flow_tools.egg-info/\n"
-        "workspace/.current_workspace.json\n"
+        ".current_workspace.json\n"
+        "current_workspace.json\n"
     )
 
     if gitignore_path.exists():
