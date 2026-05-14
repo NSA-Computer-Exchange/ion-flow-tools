@@ -4,6 +4,10 @@ import os
 import requests
 from security.iontoken import get_token
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 def build_ai_prompt(data: dict) -> str:
     import json
 
