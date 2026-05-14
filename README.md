@@ -383,6 +383,7 @@ dist/
 * Prepare deployment bundles
 * Visualize architecture
 * Generate client-ready documentation
+* Github sync
 
 ---
 
